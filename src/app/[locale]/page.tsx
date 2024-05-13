@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { getDictionary } from '@/dictionaries/dictionaries'
 
 export default async function Home({ params, searchParams }: any) {

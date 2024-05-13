@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Rubik, Cairo } from "next/font/google";
 import "../globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const rubik = Rubik({ subsets: ["latin"] });
+const cairo = Cairo({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -18,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang={params.locale}>
-      <body className={inter.className}>{children}</body>
+      <body className={params.locale == 'en' ? rubik.className : cairo.className }>{children}</body>
     </html>
   );
 }
