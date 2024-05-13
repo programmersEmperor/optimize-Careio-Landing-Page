@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -11,12 +11,18 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  params
 }: Readonly<{
   children: React.ReactNode;
+  params: { locale: 'ar' | 'en' };
 }>) {
   return (
-    <html lang="en">
+    <html lang={params.locale}>
       <body className={inter.className}>{children}</body>
     </html>
   );
+}
+
+export async function generateStaticParams() {
+  return [{ locale: 'ar' }, { locale: 'en' }]
 }
