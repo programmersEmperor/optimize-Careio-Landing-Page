@@ -1,5 +1,6 @@
 {
-    "products": {
-      "cart": "اضافة الى السلة"
-    }
-  }
+  "locale": "ar",
+  "language": "عربي",
+  "english": "انجليزي",
+  "arabic": "عربي"    
+}

@@ -1,5 +1,4 @@
 {
-    "products": {
-      "cart": "Add to Cart"
-    }
-  }
+  "locale": "en",
+  "language": "English"    
+}
