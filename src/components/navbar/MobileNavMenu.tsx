@@ -1,17 +1,19 @@
-import { useState, ReactNode } from "react";
+"use client";
+
+import { NavItemInterface, ReferenceContext } from "@/contexts/ReferenceContext";
+import { useState, ReactNode, useContext } from "react";
 
 interface Props {
   openComponent: ReactNode;
   closeComponent: ReactNode;
-  menuContent: ReactNode;
 }
 
 export default function MobileNavMenu({
   openComponent,
-  closeComponent,
-  menuContent
+  closeComponent
 }: Props) {
   const [IsMenuOpen, setIsMenuOpen] = useState(false);
+  const {navItems, activeNavItem, previousUnderlinerLeft} = useContext(ReferenceContext);
 
   return (
     <>
@@ -37,23 +39,25 @@ export default function MobileNavMenu({
             ? `top-full opacity-100 visible `
             : "top-[110%] opacity-0 invisible "
         } absolute right-8 left-8 flex flex-col justify-center z-40 mt-2 rounded-3xl border-[.5px] border-light bg-[#C4CFD5]  py-5 shadow-card transition-all`}>
-        {menuContent}
-        {/* <div>
+        {/* {menuContent} */}
+        <div>
           {navItems.map((navItem, index) => (
             <h1
-              offset={-1000}
+              // offset={-1000}
               key={index}
               className={`block text-[21px] my-5 hover:bg-primary hover:bg-opacity-5 hover:text-primary  text-[#08392F] hover:text-brandprimary ${
                 index === activeNavItem ? "font-bold" : ""
               }`}
               onClick={() => {
-                window.scrollTo(0, navItem.sectionRef.current.offsetTop);
+                if(navItem.sectionRef && navItem.sectionRef.current){
+                  window.scrollTo(0, (navItem.sectionRef.current as any).offsetTop);
+                }
               }}
             >
               {navItem.title}
             </h1>
           ))}
-        </div> */}
+        </div>
       </div>
     </>
   );

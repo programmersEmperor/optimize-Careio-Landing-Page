@@ -6,6 +6,7 @@ import LanguageMenu from "./LanguageMenu";
 import MobileNavMenu from "./MobileNavMenu";
 import { FaBars, FaXmark } from "react-icons/fa6";
 import Glassy from "../shared/Glassy";
+import { motion } from "framer-motion";
 
 interface Props {
   dict: any;
@@ -70,28 +71,7 @@ export default function Navbar({ dict }: Props) {
                   {/* menu form mobile devices */}
                   <MobileNavMenu 
                     closeComponent={<FaXmark className="h-7 w-7 " />} 
-                    openComponent={<FaBars className="h-7 w-7" />} 
-                    menuContent={
-                        <div role="none">
-                        {/* {navItems.map((navItem, index) => (
-                        <h1
-                            offset={-1000}
-                            key={index}
-                            className={`block text-[21px] my-5 hover:bg-primary hover:bg-opacity-5 hover:text-primary  text-[#08392F] hover:text-brandprimary ${
-                            index === activeNavItem ? "font-bold" : ""
-                            }`}
-                            onClick={() => {
-                            window.scrollTo(
-                                0,
-                                navItem.sectionRef.current.offsetTop
-                            );
-                            }}
-                        >
-                            {navItem.title}
-                        </h1>
-                        ))} */}
-                    </div>
-                } />
+                    openComponent={<FaBars className="h-7 w-7" />} />
                 </div>
 
                 <div
