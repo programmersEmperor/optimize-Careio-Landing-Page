@@ -132,7 +132,7 @@ export default function NavBar({ values, locale,navItems }: Props) {
                     Care<span className="text-primary">io</span>
                   </span>
                 </a>
-                <div className="flex md:order-2">
+                <div className="flex md:order-2 items-center justify-center">
                   {/* language button */}
                   <button
                     type="button"
@@ -160,9 +160,9 @@ export default function NavBar({ values, locale,navItems }: Props) {
                         : "top-[110%] opacity-0 invisible "
                     } absolute  ${
                       locale === "en"
-                        ? "right-0 xl:right-[70px] 2xl:right-0"
-                        : "left-0 xl:left-[70px] 2xl:left-0"
-                    }   flex flex-col  items-center justify-center z-40 mt-2 w-[210px] 2xl:w-[210px] xl:w-[160px] rounded-3xl border-[.5px] border-light bg-[#c4cfd5]  py-5 shadow-card transition-all`}
+                        ? "  "
+                        : " "
+                    }   flex flex-col  items-center justify-center z-40 w-[120px] lg:w-[180px] 2xl:w-[210px] xl:w-[160px] rounded-3xl border-[.5px] border-light bg-[#c4cfd5]  py-5 shadow-card transition-all`}
                   >
                     <div role="none">
                       <Link
