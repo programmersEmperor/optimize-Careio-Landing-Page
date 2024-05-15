@@ -6,7 +6,7 @@ import operation from "@/../public/icons/artificial-intelligence.gif";
 import efficiency from "@/../public/icons/review.gif";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 
 type Props = { value: any };
 

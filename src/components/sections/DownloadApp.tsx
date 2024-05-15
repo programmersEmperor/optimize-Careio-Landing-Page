@@ -3,7 +3,7 @@ import googlePlay from "@/../public/icons/google-play.png";
 import Image from "next/image";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import Link from "next/link";
 type Props = { value: any; locale: any };
 
@@ -114,7 +114,8 @@ function DownloadApp({ value, locale }: Props) {
             src={mobile}
             style={scale}
             className={`hidden object-cover  flip lg:block w-[455px] h-[593px] 2xl:w-[500px] 2xl:h-[600px] xl:w-[350px] xl:h-[450px]`}
-            alt=""
+            alt="something"
+            
           />
         </motion.div>
       </div>

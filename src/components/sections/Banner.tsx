@@ -1,10 +1,14 @@
-import React from 'react'
-import Glassy from "../Glassy";
 import ima from "@/../public/images/faqs.png";
 import Image from "next/image";
 import Link from "next/link";
-import ParticlesBackground from "../ParticalsBackground";
 import { motion } from "framer-motion";
+import dynamic from 'next/dynamic';
+
+const ParticlesBackground = dynamic(() => import('../ParticalsBackground'),{ ssr: false })
+const Glassy = dynamic(() => import('../Glassy'),{ ssr: false })
+
+
+
 type Props = {value:any,locale:any,downloadRef:any}
 
 function Banner({value,locale,downloadRef}: Props) {
@@ -26,27 +30,28 @@ function Banner({value,locale,downloadRef}: Props) {
               className={`mx-auto h-[362px] lg:h-[350px] xl:h-[350px] 2xl:h-[500px]  object-contain `}
               src={ima}
               alt="mohammed"
+              priority 
             />
           </motion.div>
-          <div className=" col-span-2 order-2 md:order-1 md:col-span-1  text-center md:text-start flex flex-col justify-center mt-[39px]">
+          <div className=" h-[209px] col-span-2 order-2 md:order-1 md:col-span-1  text-center md:text-start flex flex-col justify-center mt-[39px]">
             <motion.div
-              initial={{ x: -20, opacity: 0 }}
+              initial={{ x: -20,y:1, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className={`text-[35px] sm:text-[48px] lg:text-[50px] xl:text-[40px] 2xl:text-[55px] font-bold text-titleHome `}
+              className=' text-[35px] sm:text-[48px] lg:text-[50px] xl:text-[40px] 2xl:text-[55px] font-bold text-titleHome '
             >
               {locale === "en" ? (
-                <p>
+                <p className='h-[150px] xl:h-[120px] '>
                   {t.titlebuner1}
                   <br />
-                  {t.in} <span className="text-primary me-2">{t.digital}</span>{" "}
+                  {t.in} <span className="text-primary me-2">{t.digital}</span>
                   {t.hands}
                 </p>
               ) : (
                 ""
               )}
               {locale === "ar" ? (
-                <p>
+                <p className='h-[150px] xl:h-[120px'>
                   {t.titlebuner1}
                   <br />
                   {t.in} {t.hands}{" "}

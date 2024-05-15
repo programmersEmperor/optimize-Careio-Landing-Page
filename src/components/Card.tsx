@@ -1,4 +1,3 @@
-import React from 'react'
 import Image from "next/image";
 
 type Props = {title:any,description:any,icon:any,isFilled:any}

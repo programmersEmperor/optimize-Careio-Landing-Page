@@ -2,7 +2,7 @@ import hospital from "@/../public/images/hospital.png";
 import Image from "next/image";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 
 type Props = { value: any };
 

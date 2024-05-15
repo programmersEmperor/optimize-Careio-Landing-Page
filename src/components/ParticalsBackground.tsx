@@ -89,6 +89,7 @@ export default function ParticalsBackground({}: Props) {
         },
         detectRetina: true,
       }}
+      
     />
   );
 }

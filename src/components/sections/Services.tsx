@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import Card from "@/components/Card";
 import tpy from "@/../public/icons/tby.png";
 import city from "@/../public/icons/cita.png";

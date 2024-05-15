@@ -1,14 +1,21 @@
-'use client'
-import React, { useLayoutEffect, useRef, useState } from "react";
+"use client";
+import React, {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import { FaXmark, FaBars } from "react-icons/fa6";
-import Glassy from "./Glassy";
 import Image from "next/image";
-import Center from "./Center";
 import BannerIcon from "../../public/images/android_4_c@2x.png";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import dynamic from "next/dynamic";
+import Glassy from "./Glassy";
+import Center from "./Center";
 
-type Props = { values: any; locale: any,navItems:any};
+type Props = { values: any; locale: any; navItems: any };
 
 const GlobeIcon = ({ width = 24, height = 24 }) => (
   <svg
@@ -23,7 +30,7 @@ const GlobeIcon = ({ width = 24, height = 24 }) => (
   </svg>
 );
 
-export default function NavBar({ values, locale,navItems }: Props) {
+export default function NavBar({ values, locale, navItems }: Props) {
   const [dropDownOpen, setDropDownOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [IsMenuOpen, setIsMenuOpen] = useState(false);
@@ -37,9 +44,8 @@ export default function NavBar({ values, locale,navItems }: Props) {
   if (typeof window !== "undefined") {
     (window as any).activeNavItem = activeNavItem;
   }
-  const moveUnderline = () => {
+  const moveUnderLine = useCallback(() => {
     const activeNavItem = (window as any).activeNavItem;
-    console.log("activeNavItem: " + activeNavItem);
     let newUnderlinerLeft;
     if (underlinerRef.current) {
       newUnderlinerLeft =
@@ -50,54 +56,56 @@ export default function NavBar({ values, locale,navItems }: Props) {
     if (locale == "ar" && newUnderlinerLeft) {
       newUnderlinerLeft +=
         navItems[activeNavItem].navRef.current.getBoundingClientRect().width /
-        2;
+        4.5;
     }
     newUnderlinerLeft = Math.round(newUnderlinerLeft as any);
     setUnderlinerLeft((previous) => {
       setPreviousUnderlinerLeft(previous);
       return newUnderlinerLeft;
     });
-  };
+  }, [locale, navItems]);
 
-  useLayoutEffect(() => {
-    moveUnderline();
-  }, [activeNavItem]);
+  useEffect(()=>{
+    moveUnderLine();
+  },[activeNavItem,moveUnderLine])
 
-  useLayoutEffect(() => {
-    const dir = locale === "ar" ? "rtl" : "ltr";
+  useEffect(()=>{
+     const dir = locale === "ar" ? "rtl" : "ltr";
     (document as any).querySelector("body").setAttribute("dir", dir);
-    moveUnderline();
-  }, [locale]);
+    moveUnderLine();
+  },[locale,moveUnderLine])
 
-  useLayoutEffect(() => {
-    const onScroll = () => {
-      if (window.scrollY > 50) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-      let screenCenter = window.screen.height / 2 + window.scrollY;
-      navItems.forEach((element: any, index: any) => {
-        let startPosition = element.sectionRef.current.offsetTop;
-        let endPosition =
-          startPosition +
-          element.sectionRef.current.getBoundingClientRect().height;
-        if (screenCenter >= startPosition && screenCenter <= endPosition) {
-          setActiveNavItem(index);
+    useEffect(()=>{
+      const onScroll = () => {
+        if (window.scrollY > 50) {
+          setScrolled(true);
+        } else {
+          setScrolled(false);
         }
-      });
-      if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-        setActiveNavItem(navItems.length - 1);
-      }
-    };
-    window.addEventListener("scroll", onScroll);
-    window.addEventListener("resize", moveUnderline);
+        let screenCenter = window.screen.height / 2 + window.scrollY;
+        navItems.forEach((element: any, index: any) => {
+          let startPosition = element.sectionRef.current.offsetTop;
+          let endPosition =
+            startPosition +
+            element.sectionRef.current.getBoundingClientRect().height;
+          if (screenCenter >= startPosition && screenCenter <= endPosition) {
+            setActiveNavItem(index);
+          }
+        });
+        if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+          setActiveNavItem(navItems.length - 1);
+        }
+      };
+      window.addEventListener("scroll", onScroll);
+      window.addEventListener("resize", moveUnderLine);
 
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", moveUnderline);
-    };
-  }, []);
+      return () => {
+        window.removeEventListener("scroll", onScroll);
+        window.removeEventListener("resize", moveUnderLine);
+      };
+
+   },[navItems,moveUnderLine])
+
 
   return (
     <motion.nav
@@ -125,7 +133,7 @@ export default function NavBar({ values, locale,navItems }: Props) {
                   <Image
                     src={BannerIcon}
                     className="md:h-7 me-2 md:w-8 h-[22px] w-[22px] sm-h-[32px] sm:w-[32px] xl:w-[25px] xl:h-[25px] 2xl:h-[32px] 2xl:w-[32px]"
-                    alt="Flowbite Logo"
+                    alt="Careio Logo"
                   />
 
                   <span className="self-center md:text-[30px] xl:text-[25px] 2xl:text-[30px]  text-[22px] sm:text-[30px]  font-bold whitespace-nowrap text-black ">
@@ -159,9 +167,7 @@ export default function NavBar({ values, locale,navItems }: Props) {
                         ? `top-full opacity-100 visible `
                         : "top-[110%] opacity-0 invisible "
                     } absolute  ${
-                      locale === "en"
-                        ? "  "
-                        : " "
+                      locale === "en" ? "  " : " "
                     }   flex flex-col  items-center justify-center z-40 w-[120px] lg:w-[180px] 2xl:w-[210px] xl:w-[160px] rounded-3xl border-[.5px] border-light bg-[#c4cfd5]  py-5 shadow-card transition-all`}
                   >
                     <div role="none">
@@ -206,9 +212,9 @@ export default function NavBar({ values, locale,navItems }: Props) {
                     } absolute right-8 left-8 flex flex-col justify-center z-40 mt-2 rounded-3xl border-[.5px] border-light bg-[#C4CFD5]  py-5 shadow-card transition-all`}
                   >
                     <div role="none">
-                      {navItems.map((navItem:any, index:any) => (
-                        <h1 
-                        //   offset={-1000}
+                      {navItems.map((navItem: any, index: any) => (
+                        <h1
+                          //   offset={-1000}
                           key={index}
                           className={`block text-[21px] my-5 hover:bg-primary hover:bg-opacity-5 hover:text-primary  text-[#08392F] hover:text-brandprimary ${
                             index === activeNavItem ? "font-bold" : ""
@@ -228,20 +234,20 @@ export default function NavBar({ values, locale,navItems }: Props) {
                 </div>
 
                 <div
-                  className="items-center 2xl:h-[58px] xl:h-[47px] justify-between hidden w-full lg:flex  md:w-1/2 md:order-1"
+                  className="items-center 2xl:h-[58px] xl:h-[47px] md:h-[48px] justify-between hidden w-full lg:flex  md:w-1/2 md:order-1"
                   id="navbar-sticky"
                 >
                   <Glassy
                     height="100%"
-                    width = "100%"
-                    opacity = "1"
-                    border = "1px solid  rgba(255,255,255,0.18)"
+                    width="100%"
+                    opacity="1"
+                    border="1px solid  rgba(255,255,255,0.18)"
                     boxShadow="0"
                     blur="20px"
                     background="#B0C0CC"
                   >
                     <ul className="flex items-center justify-evenly p-4 h-full w-full md:p-0 mt-4 font-medium border  rounded-lg   md:mt-0 md:border-0  ">
-                      {navItems.map((navItem :any, index:any) => {
+                      {navItems.map((navItem: any, index: any) => {
                         return (
                           <li key={navItem.title}>
                             <h1
