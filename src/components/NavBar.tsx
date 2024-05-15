@@ -1,12 +1,14 @@
+'use client'
 import React, { useLayoutEffect, useRef, useState } from "react";
 import { FaXmark, FaBars } from "react-icons/fa6";
 import Glassy from "./Glassy";
 import Image from "next/image";
 import Center from "./Center";
-import iconbaner from "../../public/images/android_4_c@2x.png";
+import BannerIcon from "../../public/images/android_4_c@2x.png";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
-type Props = { value: any; fun: any; loc: any; navItemss: any };
+type Props = { values: any; locale: any,navItems:any};
 
 const GlobeIcon = ({ width = 24, height = 24 }) => (
   <svg
@@ -21,8 +23,8 @@ const GlobeIcon = ({ width = 24, height = 24 }) => (
   </svg>
 );
 
-export default function NavBar({ value, fun, loc, navItemss }: Props) {
-  const [dropdownOpen, setdropdownOpen] = useState(false);
+export default function NavBar({ values, locale,navItems }: Props) {
+  const [dropDownOpen, setDropDownOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [IsMenuOpen, setIsMenuOpen] = useState(false);
   const [activeNavItem, setActiveNavItem] = useState(0);
@@ -30,11 +32,7 @@ export default function NavBar({ value, fun, loc, navItemss }: Props) {
   const [previousUnderlinerLeft, setPreviousUnderlinerLeft] = useState(0);
   const underlinerRef = useRef(null);
 
-  const t = value;
-  const changeLanguage = fun;
-  const locale = loc;
-
-  const navItems = navItemss;
+  const t = values;
 
   if (typeof window !== "undefined") {
     (window as any).activeNavItem = activeNavItem;
@@ -125,7 +123,7 @@ export default function NavBar({ value, fun, loc, navItemss }: Props) {
               <div className="w-screen 2xl:w-screen xl:w-[1050px] flex items-center justify-between mx-1 sm:mx-auto  ">
                 <a href="#" className="flex items-center">
                   <Image
-                    src={iconbaner}
+                    src={BannerIcon}
                     className="md:h-7 me-2 md:w-8 h-[22px] w-[22px] sm-h-[32px] sm:w-[32px] xl:w-[25px] xl:h-[25px] 2xl:h-[32px] 2xl:w-[32px]"
                     alt="Flowbite Logo"
                   />
@@ -138,8 +136,8 @@ export default function NavBar({ value, fun, loc, navItemss }: Props) {
                   {/* language button */}
                   <button
                     type="button"
-                    onClick={() => setdropdownOpen((previous) => !previous)}
-                    onBlur={() => setdropdownOpen(false)}
+                    onClick={() => setDropDownOpen((previous) => !previous)}
+                    onBlur={() => setDropDownOpen(false)}
                     className="hover:cursor-pointer hover:shadow-lg lg:text-[15px] xl:text-[13px] 2xl:text-[15px] lg:w-[180px] lg:h-[45px] xl:w-[150px] xl:h-[35px]   px-5 py-2.5 text-center inline-flex items-center justify-center w-[100px]  bg-[black] text-[white] h-[35px]  rounded-lg text-[11px] font-bold"
                   >
                     <div className="hidden xl:flex">
@@ -157,7 +155,7 @@ export default function NavBar({ value, fun, loc, navItemss }: Props) {
                   <div
                     defaultValue={locale}
                     className={`${
-                      dropdownOpen
+                      dropDownOpen
                         ? `top-full opacity-100 visible `
                         : "top-[110%] opacity-0 invisible "
                     } absolute  ${
@@ -167,20 +165,18 @@ export default function NavBar({ value, fun, loc, navItemss }: Props) {
                     }   flex flex-col  items-center justify-center z-40 mt-2 w-[210px] 2xl:w-[210px] xl:w-[160px] rounded-3xl border-[.5px] border-light bg-[#c4cfd5]  py-5 shadow-card transition-all`}
                   >
                     <div role="none">
-                      <button
-                        onClick={() => changeLanguage("en")}
-                        value="en"
+                      <Link
+                        href="/en"
                         className="block  py-2 px-5 text-base xl:text-[13px] font-semibold text-body-color hover:bg-primary hover:bg-opacity-5 hover:text-primary"
                       >
                         {t.English}
-                      </button>
-                      <button
-                        onClick={() => changeLanguage("ar")}
-                        value="ar"
+                      </Link>
+                      <Link
+                        href="/ar"
                         className="block py-2 px-5 text-base xl:text-[13px] font-semibold  text-body-color hover:bg-primary hover:bg-opacity-5  hover:text-primary"
                       >
                         {t.Arabic}
-                      </button>
+                      </Link>
                     </div>
                   </div>
 
