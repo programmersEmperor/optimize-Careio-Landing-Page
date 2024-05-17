@@ -2,11 +2,11 @@
 import { useRef } from "react";
 import dynamic from 'next/dynamic';
 import im from "../../public/images/medicalservice-home-doctor.webp";
-import NavBar from './NavBar';
 import Glassy from './Glassy';
 import Banner from './sections/Banner';
 
-const Services = dynamic(() => import('./sections/Services'),{ ssr: false })
+const NavBar = dynamic(() => import('./NavBar'))
+const Services = dynamic(() => import('./sections/Services'),{ssr:false})
 const Clients = dynamic(() => import('./sections/Clients'),{ ssr: false })
 const WhyUs = dynamic(() => import('./sections/WhyUs'),{ ssr: false })
 const DownloadApp = dynamic(() => import('./sections/DownloadApp'),{ ssr: false })
@@ -96,8 +96,6 @@ function PageContent({lang,dict}: Props) {
             <Footer value={dict} navItems={navItems} />
           </div>
         </div>
-    
-    
     </>
   )
 }

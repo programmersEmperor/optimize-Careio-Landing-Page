@@ -4,8 +4,8 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import dynamic from 'next/dynamic';
 
-const ParticlesBackground = dynamic(() => import('../ParticalsBackground'),{ ssr: false })
-const Glassy = dynamic(() => import('../Glassy'),{ ssr: false })
+const ParticlesBackground = dynamic(() => import('../ParticalsBackground'),{ssr:false})
+const Glassy = dynamic(() => import('../Glassy'))
 
 
 

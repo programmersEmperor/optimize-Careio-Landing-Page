@@ -1,3 +1,4 @@
+
 import { getDictionary } from './dictionaries'
 import PageContent from "@/components/PageContent";
 type Props ={

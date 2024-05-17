@@ -40,7 +40,7 @@ function WhyUs({ value }: Props) {
             animate={controls}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <div
+            <div 
               className={`h-[388px] md:h-[530px] xl:h-[490px] 2xl:h-[600px] rounded-[12px] `}
               style={{
                 backgroundImage: "url(" + robot2.src + ")",
