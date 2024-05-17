@@ -10,6 +10,9 @@ const cairo = Cairo({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Careio",
   description: "Careio",
+  icons:{
+    icon: '/icons/careio.svg'
+  }
 };
 
 export default async function RootLayout({
