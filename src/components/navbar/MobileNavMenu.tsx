@@ -13,7 +13,7 @@ export default function MobileNavMenu({
   closeComponent
 }: Props) {
   const [IsMenuOpen, setIsMenuOpen] = useState(false);
-  const {navItems, activeNavItem, previousUnderlinerLeft} = useContext(ReferenceContext);
+  const {navItems, activeNavItem} = useContext(ReferenceContext);
 
   return (
     <>

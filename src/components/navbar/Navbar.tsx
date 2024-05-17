@@ -7,6 +7,8 @@ import MobileNavMenu from "./MobileNavMenu";
 import { FaBars, FaXmark } from "react-icons/fa6";
 import Glassy from "../shared/Glassy";
 import { motion } from "framer-motion";
+import NavbarUnderliner from "./NavbarUnderliner";
+import NavbarBigNavigation from "./NavbarBigNavigation";
 
 interface Props {
   dict: any;
@@ -41,17 +43,19 @@ export default function Navbar({ dict }: Props) {
                     buttonContent={
                       <>
                         <Image
-                          src="/icon/global-icon.svg"
+                          src="/icons/global-icon.svg"
                           alt="language button"
                           width={20}
                           height={20}
                           className="w-[20px] h-[20px] xl:w-[24px] xl:h-[24px] xl:pr-2"
                         />
-                        <div className="w-6 text-center">{dict.language}</div>
+                        <div className="w-3"></div>
+                        <div className="text-center">{dict.language}</div>
+                        <div className="w-3"></div>
                       </>
                     }
                     menuContent={
-                      <div>
+                      <>
                         <Link
                           href={"/en"}
                           className="block  py-2 px-5 text-base xl:text-[13px] font-semibold text-body-color hover:bg-primary hover:bg-opacity-5 hover:text-primary"
@@ -64,7 +68,7 @@ export default function Navbar({ dict }: Props) {
                         >
                           {dict.Arabic}
                         </Link>
-                      </div>
+                      </>
                     }
                   />
 
@@ -87,40 +91,12 @@ export default function Navbar({ dict }: Props) {
                     opacity="1"
                     width="100%"
                   >
-                    <nav>
+                    <nav className="h-full w-full">
                         <ul className="flex items-center justify-evenly p-4 h-full w-full md:p-0 mt-4 font-medium border  rounded-lg   md:mt-0 md:border-0  ">
-                        {/* {navItems.map((navItem, index) => {
-                            return (
-                            <li key={navItem.title}>
-                                <h1
-                                className={`block py-2 pl-3 pr-4 text-black rounded 2xl:text-[18px] lg:text-[14px] xl:text-[13px] cursor-pointer md:p-0 ${
-                                    index === activeNavItem ? "font-bold" : ""
-                                }`}
-                                ref={navItem.navRef}
-                                onClick={() => {
-                                    window.scrollTo(
-                                    0,
-                                    navItem.sectionRef.current.offsetTop - 200
-                                    );
-                                }}
-                                >
-                                {navItem.title}
-                                </h1>
-                            </li>
-                            );
-                        })} */}
+                          <NavbarBigNavigation/>
                         </ul>
                     </nav>
-                    <motion.div
-                      className={`absolute p-0 bottom-[8px] left-[0px] h-1 bg-[#119A7D]  w-8`}
-                      initial={{ marginLeft: `${previousUnderlinerLeft}px` }}
-                      animate={{ marginLeft: `${underlinerLeft}px` }}
-                      transition={{ type: "ease out" }}
-                    ></motion.div>
-                    <div
-                      className={`absolute p-0 bottom-[0px] left-[0px] h-1 bg-[#119A7D]  w-8 invisible`}
-                      ref={underlinerRef}
-                    ></div>
+                    <NavbarUnderliner/>
                   </Glassy>
                 </div>
               </div>
