@@ -25,15 +25,15 @@ export default function Banner({dict}: Props)  {
               className="col-span-2 order-1 md:order-2 md:col-span-1 lg:row-span-2 "
               initial={{ x: 20, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
+              transition={{ duration: 0.5, delay: 0 }}
             >
               <Image
-                className={`mx-auto h-[362px] lg:h-[350px] xl:h-[350px] 2xl:h-[500px]  object-contain `}
+                className={`mx-auto h-[362px] w-[300px] lg:h-[350px] xl:h-[350px] 2xl:h-[500px]  object-contain `}
                 src='/images/female-doctor.png'
                 alt="female doctor"
                 priority={true}
-                width={300}
-                height={362}
+                width={150}
+                height={181}
               />
             </motion.div>
             <div className=" col-span-2 order-2 md:order-1 md:col-span-1  text-center md:text-start flex flex-col justify-center mt-[39px]">
