@@ -9,8 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "cssnano": "^7.0.1",
-    "cssnano-preset-advanced": "^7.0.1",
     "framer-motion": "^11.1.9",
     "next": "14.2.3",
     "react": "^18",
