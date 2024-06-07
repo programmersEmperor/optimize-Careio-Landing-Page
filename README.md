@@ -1,7 +1,7 @@
 This is a [Next.js](https://nextjs.org/) project for Careio Platform, which is a medical Platform, hosted in this link [Careio Platform](https://careio.app/),
 
-## Learn More Please 
-contact me 
+## Learn More 
+please contact me 
 
 ## Getting Started
 First, run the development server:
